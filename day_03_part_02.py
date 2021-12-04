@@ -1,5 +1,4 @@
-from collections import namedtuple
-from copy import deepcopy
+from typing import Callable, Optional
 
 from day_03_part_01 import bit_array_to_number
 from python_utils import readlines
@@ -17,7 +16,7 @@ class BitFrequencyNode:
         }
 
 
-def make_trie(current_node: BitFrequencyNode, num_bits: int) -> BitFrequencyNode:
+def make_trie(current_node: BitFrequencyNode, num_bits: int) -> None:
     if not num_bits:
         return
 
@@ -38,7 +37,7 @@ def update_trie(current_node: BitFrequencyNode, bit_array: list[bool]) -> None:
     update_trie(current_node.next[bit_array[0]], bit_array[1:])
 
 
-def walk_to_construct_bit_array(current_node: BitFrequencyNode, eval_func: callable, default: bool) -> list[bool]:
+def walk_to_construct_bit_array(current_node: BitFrequencyNode, eval_func: Callable[[int, int], int], default: bool) -> list[Optional[bool]]:
     if not current_node:
         return []
 
