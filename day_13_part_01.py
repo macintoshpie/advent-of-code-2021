@@ -5,9 +5,9 @@ EMPTY = '.'
 MARKED = '#'
 
 
-def parse_input(lines):
+def parse_input(lines: list[str]) -> tuple[list[tuple[int, int]], list[tuple[str, int]]]:
     dots = []
-    
+
     line_idx = 0
     while True:
         if not lines[line_idx]:
@@ -19,15 +19,15 @@ def parse_input(lines):
 
     fold_lines = []
     for line in lines[line_idx + 1:]:
-        instruction, amount = line.split('=')
+        instruction, amount_str = line.split('=')
         direction = 'x' if 'x' in instruction else 'y'
-        amount = int(amount)
+        amount = int(amount_str)
         fold_lines.append((direction, amount))
     
     return dots, fold_lines
 
 
-def print_dots(dots):
+def print_dots(dots: set[tuple[int, int]]) -> None:
     width = max([d[0] for d in dots]) + 1
     height = max([d[1] for d in dots]) + 1
     grid = []

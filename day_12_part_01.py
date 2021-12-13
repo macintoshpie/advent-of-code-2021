@@ -17,7 +17,7 @@ class Node:
 
     @staticmethod
     def parse_graph(adjacency_lines: list[str]) -> Dict[str, Node]:
-        nodes_by_label = {}
+        nodes_by_label: dict[str, Node] = {}
         for line in adjacency_lines:
             a_label, b_label = line.split('-')
             a_node, b_node = nodes_by_label.get(a_label), nodes_by_label.get(b_label)
