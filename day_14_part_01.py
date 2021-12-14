@@ -4,14 +4,20 @@ import re
 from copy import deepcopy
 
 
+def parse_input(lines: list[str]) -> tuple[str, list[tuple[str, str]]]:
+    template = lines[0]
+    rules = []
+    for line in lines[2:]:
+        x, y = line.split(' -> ')
+        rules.append((x, y))
+
+    return template, rules
+
+
 def main():
     input = [l.strip() for l in readlines()]
 
-    template = input[0]
-    rules = []
-    for line in input[2:]:
-        x, y = line.split(' -> ')
-        rules.append((x, y))
+    template, rules = parse_input(input)
 
     current_template = list(template)
     for _ in range(10):
